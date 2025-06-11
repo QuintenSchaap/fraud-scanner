@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+    customers-api:
+        image: vzdeveloper/customers-api
+        ports:
+            - "8001:80"
+
+    db:
+        image: mysql:8.0
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: fraudscanner
+            MYSQL_USER: fraudscan
+            MYSQL_PASSWORD: password123
+        volumes:
+            - db-data:/var/lib/mysql
+
+volumes:
+    db-data:
