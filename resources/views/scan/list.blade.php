@@ -39,7 +39,7 @@
                 <td>{{ $customer->ip_address }}</td>
                 <td>{{ $customer->phone_number }}</td>
                 <td>{{ $customer->date_of_birth->format('d-m-Y') }}</td>
-                <td>{{ $customer->is_fraudulent ? 'JA' : 'NEE' }}</td>
+                <td>{{ $customer->is_fraudulent ? 'Yes' : 'No' }}</td>
             </tr>
         @endforeach
         </tbody>

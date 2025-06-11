@@ -25,6 +25,16 @@ class ScanController extends Controller
 
             $data = $response->json();
             $customers = $data['customers'] ?? [];
+            $ipCounts = [];
+            $ibanCounts = [];
+
+            foreach ($customers as $customerFraudCheck) {
+                $ip = $customerFraudCheck['ipAddress'];
+                $iban = $customerFraudCheck['iban'];
+
+                $ipCounts[$ip] = ($ipCounts[$ip] ?? 0) + 1;
+                $ibanCounts[$iban] = ($ibanCounts[$iban] ?? 0) + 1;
+            }
 
             $scan = Scan::create([
                 'scanned_at' => Carbon::now(),
@@ -33,7 +43,7 @@ class ScanController extends Controller
             $savedCustomers = [];
 
             foreach ($customers as $customer) {
-                $isFraud = $this->checkForFraud($customer);
+                $isFraud = $this->checkForFraud($customer, $ipCounts, $ibanCounts);
 
                 $savedCustomer = $scan->customers()->create([
                     'customer_id' => $customer['customerId'],
@@ -63,10 +73,15 @@ class ScanController extends Controller
         }
     }
 
-    private function checkForFraud($customer)
+    private function checkForFraud($customer, $ipCounts, $ibanCounts)
     {
-        // Temporary fraud check, will add logic later on
-        return str_ends_with($customer['iban'], '0000') || $customer['ipAddress'] === '127.0.0.1';
+        $ip = $customer['ipAddress'];
+        $iban = $customer['iban'];
+
+        $ipDuplicate = isset($ipCounts[$ip]) && $ipCounts[$ip] > 1;
+        $ibanDuplicate = isset($ibanCounts[$iban]) && $ibanCounts[$iban] > 1;
+
+        return $ipDuplicate || $ibanDuplicate;
     }
 
     public function allScans()
