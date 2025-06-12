@@ -77,11 +77,13 @@ class ScanController extends Controller
     {
         $ip = $customer['ipAddress'];
         $iban = $customer['iban'];
+        $number = $customer['phoneNumber'];
 
         $ipDuplicate = isset($ipCounts[$ip]) && $ipCounts[$ip] > 1;
         $ibanDuplicate = isset($ibanCounts[$iban]) && $ibanCounts[$iban] > 1;
+        $isForeignNumber = !preg_match('/^\+31/', $number);
 
-        return $ipDuplicate || $ibanDuplicate;
+        return $ipDuplicate || $ibanDuplicate || $isForeignNumber;
     }
 
     public function allScans()
