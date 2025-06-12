@@ -20,6 +20,8 @@
     <button type="submit">Start New Scan</button>
 </form>
 
+<p><a href="{{ route('scan.list') }}">View all scans</a></p>
+
 @if ($errors->any())
     <div style="color: red; margin-top: 20px;">
         <ul>
@@ -58,5 +60,3 @@
         </tbody>
     </table>
 @endif
-
-<p><a href="{{ route('scan.list') }}">View all scans</a></p>

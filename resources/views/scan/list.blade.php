@@ -7,7 +7,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
         th, td {
             padding: 8px 12px;
@@ -44,6 +44,5 @@
         @endforeach
         </tbody>
     </table>
+    <a href="{{ route('scan.index') }}">⬅ Back to start scan</a>
 @endforeach
-
-<p><a href="{{ route('scan.index') }}">⬅ Back to start scan</a></p>
