@@ -1,18 +1,6 @@
 <head>
-    <title>Fraude Scan Starten</title>
-    <style>
-        .fraudulent {
-            background-color: #ffcccc;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Fraud Scan Start</title>
 </head>
 <h1>Fraud Scan</h1>
 <form method="POST" action="{{ route('scan.run') }}">

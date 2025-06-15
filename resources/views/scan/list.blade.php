@@ -1,19 +1,6 @@
 <head>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Overview of Completed Scans</title>
-    <style>
-        .fraudulent {
-            background-color: #ffcccc;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        th, td {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-        }
-    </style>
 </head>
 <h1>Completed Scans</h1>
 
