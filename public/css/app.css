@@ -1,0 +1,11 @@
+.fraudulent {
+    background-color: #ffcccc;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
